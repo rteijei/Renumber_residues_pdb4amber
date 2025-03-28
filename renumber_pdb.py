@@ -18,12 +18,12 @@ def renumber_chain_A(target_pdb, reference_pdb, output_pdb):
     ref_residue_map = {}
     for model in ref_structure:
         for chain in model:
-            if chain.id == 'A':
+            if chain.id == 'A': #If your initial pdb file doesn't have chains (sometimes pdb4amber deletes the chain ID if there is only one) just comment out this line and the A in line 26
                 for index, res in enumerate(chain.get_residues(), start=1):
                     ref_residue_map[index] = res.id[1]  # Map sequential index to correct residue number
 
     # Extract residues from target PDB (only chain A)
-    target_chain = target_structure[0]['A']
+    target_chain = target_structure[0]['A'] #Again, if your pdb file doesn't have chain ID just comment out before ['A'].
     target_residues = list(target_chain.get_residues())
 
     # Check if the number of residues match
